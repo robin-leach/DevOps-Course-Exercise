@@ -33,6 +33,16 @@ def index():
                     session.save_item(updated_item)
                 else:
                     raise Error('No item found with id ' + id)
+            else:
+                raise Error('Item id is required')
+
+        elif form_type == 'delete-item':
+            id = request.form.get('item_id')
+
+            if id:
+                session.delete_item(id)
+            else:
+                raise Error('Item id is required')
         
         else:
             raise Error('Invalid request')
