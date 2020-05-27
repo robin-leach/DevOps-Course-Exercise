@@ -12,7 +12,18 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         {% for item in items %}
-          <li>{{item.title}}</li>
+          <li>{{item.title}}
+            status: {{item.status}}
+            <form id="update-item" action="" method="post">
+              <input type="hidden" name="form_id" value="update-item">
+              <input type="hidden" name="item_id" value={{item.id}}>
+              {% if item.status == 'Not Started' %}
+                <input type="submit" value="Mark completed">
+              {% else %}
+                <input type="submit" value="Mark incomplete">
+              {% endif %}
+            </form>
+          </li>
         {% endfor %}
       </ul>
     </div>
@@ -21,9 +32,10 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Add a new item</h2>
-      <form action = "" method="post">
-        <label for="title1">Title:</label><br>
-        <input type="text" id="title1" name="title1"><br>
+      <form id="add-item" action="" method="post">
+        <input type="hidden" name="form_id" value="add-item">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
         <input type="submit" value="Submit">
       </form>
     </div>
